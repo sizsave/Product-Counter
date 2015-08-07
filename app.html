@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial=scale=1.0">
+    <title>product counter display</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+       
+    <style>
+    
+    .display_area,.input_area {
+	margin: 25px 25px;
+}    
+       </style>
+
+</head>
+<body>
+       <div class="input_area">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        <input type="text" name="" id="input" class="form-control productname" value="" pattern="" title="" placeholder="Product Name">
+
+                </div>
+
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        <input type="text" name="" id="input" class="form-control productprice" value="" pattern="" title="" placeholder="Product Price">
+
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        <input type="text" name="" id="input" class="form-control productquantity" value=""  pattern="" title="" placeholder="Product Quantity">
+                                                
+
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 ">
+                        <button type="button" class="btn btn-success addlistbutton">Add to List</button>
+
+                </div>
+            </div>
+        
+        </div>
+       
+        <div class="display_area">
+            
+         <div class="row">
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <table class="table table-condensed table-hover">
+                    <thead>
+                      <tr>
+                        <th><h4 class="">Product Name </h4></th>
+                      </tr>
+                    </thead>
+                    <tbody class="Product_name" >
+                    </tbody>
+                  </table>
+
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <table class="table table-condensed table-hover">
+                    <thead>
+                      <tr>
+                        <th><h4 class="">Product Price</h4></th>
+                      </tr>
+                    </thead>
+                    <tbody class="product_price"  >
+                    </tbody>
+                  </table>
+
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <table class="table table-condensed table-hover">
+                    <thead>
+                      <tr>
+                        <th><h4 class="">Product Quantity</h4></th>
+                      </tr>
+                    </thead>
+                    <tbody class="product_quantity" >
+                    </tbody>
+                  </table>
+
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <table class="table table-condensed table-hover">
+                    <thead>
+                      <tr>
+                        <th><h4 class="">Total Amount</h4></th>
+                      </tr>
+                    </thead>
+                    <tbody class="total_aount" >
+                    </tbody>
+                  </table>
+
+            </div>        
+        </div>
+                        
+            
+        </div>
+    <script type="text/javascript" >
+var pNameRow=document.querySelector('.Product_name')//display name       
+var pPriceRow=document.querySelector('.product_price')//display name    
+var pQuanRow=document.querySelector('.product_quantity')//display     
+pTotalAmoRow=document.querySelector('.total_aount')//display 
+
+var productName=document.querySelector('.productname'); ///assign inputtext as variable  
+var productPrice=document.querySelector('.productprice');//assign inputtext as variable 
+var productQuantity=document.querySelector('.productquantity');  //assign inputtext as variable 
+var productTotal=document.querySelector('.gettotal'); //assign inputtext as variable        
+var addListButton=document.querySelector('.addlistbutton'); //assign submit button to variable
+var getTotalAmount=0;
+        
+addListButton.addEventListener('click',addTolist);  // when it's click it's run addTolist
+
+        
+
+function addTolist(){
+    
+    /* start Cullect value from inout field */
+    
+    var name=productName.value; // assign inputtext (.productname) value on name
+   var Price=productPrice.value;// assign inputtext(.productprice) value on Price productName.value=""; // assign productName.value as empty string
+    
+var quantity=productQuantity.value;// assign inputtext (.productquantity) value on quantity    
+  
+var getTotal=+(Price*quantity); // getTotal is multification of price and quantity
+    if(getTotalAmount>0){
+        getTotalAmount=(getTotalAmount+getTotal);
+    } else {
+        getTotalAmount=+(getTotalAmount*quantity);
+    }
+ /* End Cullect value from inout field */   
+
+/* start assign empty string */    
+    productName.value="";
+    productPrice.value=""; // assign productPrice.value as empty string
+    
+    productQuantity.value="";// assign productQuantity.value as empty string
+ /* End assign empty string */  
+
+/* Start Create Element */    
+
+ /* create table row */   
+var ProductNameRow=document.createElement('tr');// create tr(table data) and select dom 
+var ProductNameCol=document.createElement('td');//    
+ var ProductPriceRow=document.createElement('tr');// create tr(table data) and select dom  
+var ProductPriceCol=document.createElement('td');// create tr(table data) and select dom     
+var ProductQuantityRow=document.createElement('tr');// create tr(table data) and select dom  
+var ProductQuantityCol=document.createElement('td');// create tr(table data) and select dom 
+    
+var ProductQuantityRow=document.createElement('tr');// create tr(table data) and select dom  
+var ProductQuantityCol=document.createElement('td');// create tr(table data) and select dom   
+    
+var pTotalAmoRow=document.createElement('tr');// create tr(table data) and select dom  
+var pTotalAmoCol=document.createElement('td');// create tr(table data) and select dom  
+    
+/* End Create table data */    
+   
+
+
+    /* start puting value's  */
+    
+ProductNameCol.innerHTML=name;
+ProductPriceCol.innerHTML=Price;
+ProductQuantityCol.innerHTML=quantity;
+pTotalAmoCol.innerHTML=getTotalAmount;   
+    /* start append rows */
+pNameRow.appendChild(ProductNameRow);
+pNameRow.appendChild(ProductNameCol);
+    
+pPriceRow.appendChild(ProductPriceRow);
+pPriceRow.appendChild(ProductPriceCol);
+
+    pQuanRow.appendChild(ProductQuantityRow);
+pQuanRow.appendChild(ProductQuantityCol);
+    
+pTotalAmoRow.appendChild(ProductQuantityRow);
+pTotalAmoCol.appendChild(ProductQuantityCol);     
+   /* start append  */
+    
+
+
+
+ 
+
+} 
+    </script>
+</body>
+</html>
